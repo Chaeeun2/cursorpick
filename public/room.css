@@ -46,7 +46,7 @@ body {
 }
 
 #voteTitle {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 800;
   margin: 0;
   margin-bottom: 10px;
@@ -110,7 +110,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 60px;
+  font-size: 80px;
   font-weight: 800;
   word-break: keep-all;
   transition: all 0.3s ease;
