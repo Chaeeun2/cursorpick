@@ -244,7 +244,7 @@ voteForm.addEventListener('submit', (e) => {
     
     // 버튼 비활성화
     createVoteBtn.disabled = true;
-    createVoteBtn.textContent = '<span>만드는 중</span>';
+    createVoteBtn.textContent = '만드는 중';
     
     // 서버에 투표 생성 요청
     socket.emit('create-vote', voteData);
