@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투표방</title>
+    <link rel="stylesheet" href="room.css">
+    <link rel="stylesheet" href="create-vote.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    </style>
+</head>
+
+<body>
+    <div class="room-container">
+        <header>
+            <div class="room-header">
+                <button id="backToRoomsBtn" class="back-btn">←</button>
+                <div class="room-info">
+                    <h2 id="voteTitle">투표 주제</h2>
+                    <div id="userCount">0명 참여</div>
+                </div>
+                <div class="room-controls">
+                    <button id="startVoteBtn" class="primary-btn" style="display: none;">투표 시작</button>
+                    <button id="editVoteBtn" class="edit-btn" style="display: none;">설정 변경</button>
+                    <div id="timerCircle">
+                        <span id="timerText">대기 중...</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main id="votingArea">
+
+            <!-- 선택지 영역 -->
+            <div id="choiceAreas">
+                <div id="choiceA" class="choice-area">
+                    <div class="choice-content">
+                        <p>선택지 A</p>
+                    </div>
+                </div>
+                <div id="choiceB" class="choice-area">
+                    <div class="choice-content">
+                        <p>선택지 B</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 다른 사용자들의 커서가 여기에 표시됩니다 -->
+            <div id="cursors"></div>
+        </main>
+    </div>
+
+    <!-- 선택지 편집 모달 -->
+    <div id="editVoteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-container">
+                    <form id="editVoteForm">
+                        <div class="form-section">
+                            <h2>투표 주제</h2>
+                            <input type="text" id="editVoteTitle" maxlength="50" required>
+                        </div>
+
+                        <div class="form-section">
+                            <h2>선택지 설정</h2>
+                            <div class="choice-inputs">
+                                <div class="choice-input-group">
+                                    <input type="text" id="editChoiceA" placeholder="선택지 A" maxlength="30" required>
+                                </div>
+
+                                <div class="choice-input-group">
+                                    <input type="text" id="editChoiceB" placeholder="선택지 B" maxlength="30" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2>투표 시간</h2>
+                            <div class="time-inputs">
+                                <div class="time-preset">
+                                    <button type="button" class="time-btn" data-time="5">5초</button>
+                                    <button type="button" class="time-btn" data-time="10">10초</button>
+                                    <button type="button" class="time-btn" data-time="15">15초</button>
+                                    <button type="button" class="time-btn" data-time="30">30초</button>
+                                    <button type="button" class="time-btn" data-time="60">60초</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <div class="form-actions">
+                                <button type="button" class="secondary-btn" id="cancelEditBtn">취소</button>
+                                <button type="submit" class="primary-btn">
+                                    <span>저장</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 투표 결과 모달 -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="resultContent">
+                    <div class="result-summary">
+                        <h4 id="resultTitle">투표 주제</h4>
+                    </div>
+                    <div class="result-choices">
+                        <div class="result-choice">
+                            <div class="choice-header">
+                                <h5 id="resultChoiceA">선택지 A</h5>
+                                <span id="resultVotesA">0표</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressA"></div>
+                            </div>
+                        </div>
+                        <div class="result-choice">
+                            <div class="choice-header">
+                                <h5 id="resultChoiceB">선택지 B</h5>
+                                <span id="resultVotesB">0표</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressB"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-winner" id="resultWinner">
+                        선택지 A 승리!
+                    </div>
+                    <div class="close-btn">닫기</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="room.js"></script>
+</body>
+
+</html>

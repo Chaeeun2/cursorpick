@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: cursorpick-voting
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production

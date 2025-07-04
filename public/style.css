@@ -1,0 +1,251 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Pretendard", sans-serif !important;
+  font-weight: 800;
+}
+
+/* 모바일 기본 스타일 제거 */
+input,
+button,
+textarea,
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* 버튼 특별 처리 */
+button {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+body {
+  font-family: "Pretendard", sans-serif;
+  min-height: 100vh;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+#app {
+  width: 500px;
+  height: 800px;
+  border: 2px solid black;
+  position: relative;
+  overflow-x: scroll;
+}
+
+.create-btn {
+  background: black;
+  color: white;
+  padding: 12px 25px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+main {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 방 목록 페이지 스타일 */
+#roomListArea {
+  padding: 30px;
+}
+
+#roomListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#roomListHeader h2 {
+  margin-bottom: 0.5rem;
+  font-size: 40px;
+  line-height: 1;
+}
+
+#roomListHeader p {
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+/* 빈 상태 메시지 */
+.empty-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.empty-state h3 {
+  color: black;
+  margin-bottom: 1rem;
+  font-size: 30px;
+}
+
+.empty-state p {
+  color: black;
+  font-size: 18px;
+}
+
+/* 방 목록 */
+#roomList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.room-card {
+  padding: 1.5rem 0;
+  border-bottom: 2px solid black;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.room-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 4;
+}
+
+.room-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: black;
+  margin: 0;
+  white-space: wrap;
+  wordbreak: keep-all;
+}
+
+.room-status {
+  background: #1eff00;
+  color: black;
+  padding: 0.3rem 0.5rem;
+  font-size: 16px;
+  font-weight: 800;
+  display: inline-block;
+}
+
+.room-status.voting {
+  background: #ff5c5c;
+}
+
+.room-choice {
+  font-size: 18px;
+  font-weight: 800;
+  color: black;
+  white-space: wrap;
+}
+
+.room-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  flex: 1;
+}
+
+.room-participants {
+  color: black;
+  font-size: 18px;
+}
+
+.room-timer {
+  color: #4caf50;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.room-enter {
+  flex: 1;
+  height: 100%;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: black;
+}
+
+.room-enter.voting-enter {
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  * {
+    font-family: "Pretendard", sans-serif !important;
+  }
+  body {
+    display: block;
+  }
+
+  #app {
+    width: 100vw;
+    height: 100dvh;
+    border: none;
+  }
+
+  #roomListArea {
+    padding: 25px;
+  }
+
+  #roomListHeader h2 {
+    font-size: 25px;
+  }
+
+  .create-btn,
+  .empty-state p,
+  .room-participants,
+  .room-enter,
+  .room-choice {
+    font-size: 16px;
+  }
+
+  .room-status {
+    font-size: 14px;
+  }
+
+  .empty-state h3 {
+    font-size: 25px;
+  }
+
+  .room-card {
+    width: calc(100vw - 50px);
+  }
+
+  .room-card-header {
+    flex: 3;
+  }
+
+  .room-title {
+    font-size: 18px;
+  }
+}

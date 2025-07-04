@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투표 만들기</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="create-vote.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div id="backBtn" class="secondary-btn">←</div>
+            <h1>방 만들기</h1>
+        </header>
+
+        <main id="createVoteArea">
+            <div class="form-container">
+                <form id="voteForm">
+                    <div class="form-section">
+                        <h2>투표 주제</h2>
+                        <div class="input-with-counter">
+                            <input type="text" id="voteTitle" maxlength="30" required>
+                            <div class="char-counter">
+                                <span id="titleCounter">0</span>/30
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>선택지 설정</h2>
+                        <div class="choice-inputs">
+                            <div class="choice-input-group">
+                                <div class="input-with-counter">
+                                    <input type="text" id="choiceA" placeholder="선택지 A" maxlength="20" required>
+                                    <div class="char-counter">
+                                        <span id="choiceACounter">0</span>/20
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="choice-input-group">
+                                <div class="input-with-counter">
+                                    <input type="text" id="choiceB" placeholder="선택지 B" maxlength="20" required>
+                                    <div class="char-counter">
+                                        <span id="choiceBCounter">0</span>/20
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>투표 시간</h2>
+                        <div class="time-inputs">
+                            <div class="time-preset">
+                                <button type="button" class="time-btn" data-time="5">5초</button>
+                                <button type="button" class="time-btn active" data-time="10">10초</button>
+                                <button type="button" class="time-btn" data-time="15">15초</button>
+                                <button type="button" class="time-btn" data-time="30">30초</button>
+                                <button type="button" class="time-btn" data-time="60">60초</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="form-actions">
+                            <button type="submit" id="createVoteBtn" class="primary-btn">
+                                <span>방 만들기</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="create-vote.js"></script>
+</body>
+
+</html>
