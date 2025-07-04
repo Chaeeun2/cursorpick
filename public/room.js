@@ -238,19 +238,31 @@ socket.on('room-info-updated', (roomData) => {
 });
 
 // 사용자 위치 업데이트
-socket.on('user-moved', (user) => {
-    users.set(user.id, user);
+socket.on('mouse-moved', (data) => {
+    const { userId, x, y, color } = data;
+    
+    // 사용자 정보 업데이트
+    let user = users.get(userId);
+    if (!user) {
+        user = { id: userId, x, y, color };
+        users.set(userId, user);
+    } else {
+        user.x = x;
+        user.y = y;
+        user.color = color;
+    }
+    
     updateCursor(user);
     updateLiveVoteCount();
 });
 
 // 사용자 호버 상태 업데이트
-socket.on('user-hover-updated', (data) => {
-    const { id, hoverChoice } = data;
-    const user = users.get(id);
+socket.on('hover-choice-changed', (data) => {
+    const { userId, choice, color } = data;
+    const user = users.get(userId);
     
     if (user) {
-        user.hoverChoice = hoverChoice;
+        user.hoverChoice = choice;
         
         // 투표 중이면 실시간 투표 수 업데이트
         if (isVoting) {
