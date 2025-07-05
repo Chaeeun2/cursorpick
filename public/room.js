@@ -317,7 +317,7 @@ backToRoomsBtn.addEventListener('click', () => {
 startVoteBtn.addEventListener('click', () => {
     
     if (canStartVote()) {
-        socket.emit('start-vote', currentRoomId);
+        socket.emit('start-vote', { roomId: currentRoomId });
     } else {
         if (!isRoomCreator) {
             showNotification('방장만 투표를 시작할 수 있습니다.');
