@@ -271,6 +271,14 @@ socket.on('hover-choice-changed', (data) => {
     }
 });
 
+// 사용자 입장
+socket.on('user-joined', (user) => {
+    users.set(user.id, user);
+    updateCursor(user);
+    updateStats();
+    updateLiveVoteCount();
+});
+
 // 사용자 이탈
 socket.on('user-left', (userId) => {
     users.delete(userId);
